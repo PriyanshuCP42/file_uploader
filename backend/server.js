@@ -31,7 +31,12 @@ app.use((err, req, res, next) => {
 });
 
 // --- Start Server ---
-app.listen(config.port, () => {
-  console.log(`\n🚀 PDF Processing Server running on http://localhost:${config.port}`);
-  console.log(`   Health check: http://localhost:${config.port}/api/health\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(config.port, () => {
+    console.log(`\n🚀 PDF Processing Server running on http://localhost:${config.port}`);
+    console.log(`   Health check: http://localhost:${config.port}/api/health\n`);
+  });
+}
+
+// Export for Vercel Serverless
+module.exports = app;

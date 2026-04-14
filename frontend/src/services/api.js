@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api';
+// Use relative /api path in production (Vercel) so it hits the serverless backend.
+// Use localhost:3001 in development mode.
+const API_BASE_URL = import.meta.env.PROD 
+  ? '/api' 
+  : (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api');
 
 const api = axios.create({
   baseURL: API_BASE_URL,

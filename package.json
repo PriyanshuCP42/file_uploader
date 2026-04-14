@@ -1,0 +1,7 @@
+{
+  "name": "pdf-analyzer-vercel",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build && cd .. && rm -rf public && mv frontend/dist public && cd backend && npm install"
+  }
+}
